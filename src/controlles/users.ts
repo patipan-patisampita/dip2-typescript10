@@ -1,24 +1,26 @@
 import { Request, Response } from "express";
-const homeDetail = (req: Request, resp: Response) => {
-    // let obj = {
-    //     x: 12,
-    //     y: 30
-    // }
+import UserModel from "../../models/users";
 
-    //let data = sumData(obj);
+const homeDetail = async (req: Request, resp: Response) => {
+
+    let myData = await UserModel.find();
+    let obj = {x: 12,y: 30}
+
+    let data = sumData(obj);
     resp.json({
         message: "Home Page new",
-        //data: data
+        data:data,
+        myData: myData
     })
 };
 
-// interface params {
-//     x: number,
-//     y: number
-// }
+interface params {
+    x: number,
+    y: number
+}
 
-// const sumData = (obj: params) => {
-//     return obj.x + obj.y;
-// }
+const sumData = (obj: params) => {
+    return obj.x + obj.y;
+}
 
 export { homeDetail };
